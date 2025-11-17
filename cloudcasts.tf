@@ -43,6 +43,7 @@ data "aws_ami" "ubuntu" {
 variable infra_env {
     type = string
     description = "infrastructure environment"
+    default = "dev"
 }
  
 variable default_region {
@@ -64,7 +65,7 @@ module "ec2_app" {
    infra_env = var.infra_env
    infra_role = "app"
    instance_size = "t3.small"
-   instance_ami = data.aws_ami.app.id
+   instance_ami = data.aws_ami.ubuntu.id
    # instance_root_device_size = 12 # Optional
 }
  
@@ -74,6 +75,6 @@ module "ec2_worker" {
    infra_env = var.infra_env
    infra_role = "worker"
    instance_size = "t3.large"
-   instance_ami = data.aws_ami.app.id
+   instance_ami = data.aws_ami.ubuntu.id
    instance_root_device_size = 50
 }
