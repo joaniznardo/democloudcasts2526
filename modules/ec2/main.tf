@@ -46,7 +46,7 @@ resource "aws_eip" "cloudcasts_addr" {
 
   lifecycle {
 
-    prevent_destroy = true
+    prevent_destroy = false
 
   }
 
